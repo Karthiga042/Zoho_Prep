@@ -1,0 +1,20 @@
+//gfg
+//Two Sum - Pair with Given Sum
+class Solution {
+    boolean twoSum(int arr[], int target) {
+        // code here
+        HashSet<Integer> set=new HashSet<>();
+        for(int i=0;i<arr.length;i++)
+        {
+            int rem=target-arr[i];
+            //if remaining value already in set then pair found
+            if(set.contains(rem))
+            {
+                return true;
+            }
+            //otherwise add
+            set.add(arr[i]);
+        }
+        return false;
+    }
+}
