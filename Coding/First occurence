@@ -1,0 +1,32 @@
+//gfg
+//First Occurence
+class Solution {
+    // Function to locate the occurrence of the string x in the string s.
+    int firstOccurence(String txt, String pat) {
+        // Your code here
+        //return txt.indexOf(pat);
+        
+        int n=txt.length();
+        int m=pat.length();
+        //to try every starting position of pat length
+        for(int i=0;i<=n-m;i++)
+        {
+            boolean found=true;
+            //to iterate pat
+            for(int j=0;j<m;j++)
+            {
+                //check if all characters of pat matches txt
+                if(txt.charAt(i+j)!=pat.charAt(j))
+                {
+                    found=false;
+                    break;
+                }
+            }
+            if(found)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
