@@ -1,0 +1,50 @@
+//sieve of Eratosthenes in tc: O(root(n))
+public class PrimeCheck {
+    public static boolean isPrime(int n) {
+        if (n <= 1)
+            return false; // 0 and 1 are not prime
+
+        // Check from 2 to √n
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) // If divisible, not prime
+                return false;
+        }
+
+        return true; // No divisors found, it's prime
+    }
+
+    public static void main(String[] args) {
+        int number = 29;
+
+        if (isPrime(number))
+            System.out.println(number + " is a Prime number.");
+        else
+            System.out.println(number + " is NOT a Prime number.");
+    }
+}
+
+//tc in O(n)
+public class PrimeCheckON {
+    public static boolean isPrime(int n) {
+        if (n <= 1)
+            return false;
+
+        // Check from 2 to n-1
+        for (int i = 2; i < n; i++) {
+            if (n % i == 0) {
+                return false; // Found a factor
+            }
+        }
+
+        return true; // No factors found, it's prime
+    }
+
+    public static void main(String[] args) {
+        int number = 29;
+
+        if (isPrime(number))
+            System.out.println(number + " is a Prime number.");
+        else
+            System.out.println(number + " is NOT a Prime number.");
+    }
+}
