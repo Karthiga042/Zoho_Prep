@@ -1,0 +1,17 @@
+//kadane's algorithm
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int maxSum = nums[0];         // Stores the maximum subarray sum found so far
+        int currentSum = nums[0];     // Stores the current subarray sum
+
+        for (int i = 1; i < nums.length; i++) {
+            // Decide whether to extend the current subarray or start a new one
+            currentSum = Math.max(nums[i], currentSum + nums[i]);
+
+            // Update the max sum if current subarray is greater
+            maxSum = Math.max(maxSum, currentSum);
+        }
+
+        return maxSum;
+    }
+}
