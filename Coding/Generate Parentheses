@@ -1,0 +1,28 @@
+//lc-22
+//Generate Parentheses
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> result=new ArrayList<>();
+        generate(result,"",0,0,n);
+        return result;
+    }
+    public void generate(List<String> result,String current,int open,int close,int max)
+    {
+        // base case: if the current string is of length 2 * n, it's a valid combination
+        if(current.length()==max*2)
+        {
+            result.add(current);
+            return;
+        }
+        // if so we can still add an opening parenthesis
+        if(open<max)
+        {
+            generate(result,current+'(',open+1,close,max);
+        }
+        //we can add a closing parenthesis (only if open > close)
+        if(close<open)
+        {
+            generate(result,current+')',open,close+1,max);
+        }
+    }
+}
