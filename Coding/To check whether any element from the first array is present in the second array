@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class ArrayElementCheck {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input for first array
+        System.out.print("Enter size of first array: ");
+        int n = sc.nextInt();
+        int[] arr1 = new int[n];
+        System.out.println("Enter elements of first array:");
+        for (int i = 0; i < n; i++) {
+            arr1[i] = sc.nextInt();
+        }
+
+        // Input for second array
+        System.out.print("Enter size of second array: ");
+        int m = sc.nextInt();
+        int[] arr2 = new int[m];
+        System.out.println("Enter elements of second array:");
+        for (int i = 0; i < m; i++) {
+            arr2[i] = sc.nextInt();
+        }
+
+        // Store all elements of arr1 in a HashSet
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < n; i++) {
+            set.add(arr1[i]);
+        }
+
+        // Check if any element of arr2 exists in the set
+        boolean found = false;
+        for (int i = 0; i < m; i++) {
+            if (set.contains(arr2[i])) {
+                found = true;
+                break;
+            }
+        }
+
+        System.out.println(found ? "YES" : "NO");
+        sc.close();
+    }
+}
