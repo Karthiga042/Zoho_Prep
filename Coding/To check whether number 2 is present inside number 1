@@ -1,0 +1,52 @@
+import java.util.*;
+
+public class NumberContains {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Take user input
+        System.out.print("Enter Number 1: ");
+        int num1 = sc.nextInt(); // Example: 12345
+
+        System.out.print("Enter Number 2: ");
+        int num2 = sc.nextInt(); // Example: 45
+
+        // Count how many digits num2 has (needed for window size)
+        int len = getDigitCount(num2); // len = 2
+
+        // Compute 10^len → used to extract the last 'len' digits from num1
+        int power = (int) Math.pow(10, len); // power = 100
+
+        boolean found = false;
+
+        // Slide a window of size 'len' from right to left on num1
+        while (num1 >= num2) {
+            // Extract last 'len' digits from num1
+            int lastDigits = num1 % power;
+
+            // Check if the extracted digits match num2
+            if (lastDigits == num2) {
+                found = true;
+                break;
+            }
+
+            // Remove the last digit of num1 to slide the window left
+            num1 /= 10;
+        }
+
+        // Print result
+        System.out.println(found ? "YES" : "NO");
+
+        sc.close();
+    }
+
+    // Helper method to count number of digits in a number
+    public static int getDigitCount(int n) {
+        int count = 0;
+        while (n > 0) {
+            n /= 10;
+            count++;
+        }
+        return count;
+    }
+}
