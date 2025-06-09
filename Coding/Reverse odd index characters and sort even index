@@ -1,0 +1,123 @@
+import java.util.Scanner;
+
+public class RearrangeArrayInPlace {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Read size of array
+        System.out.print("Enter size of array: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        // Read array elements
+        System.out.println("Enter elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        // Rearrange array as per problem statement
+        rearrange(arr);
+
+        // Print the rearranged array
+        for (int val : arr) {
+            System.out.print(val + " ");
+        }
+        sc.close();
+    }
+
+    static void rearrange(int[] arr) {
+        // Sort elements at even indices in ascending order using insertion sort
+        // Start from index 2 and go in steps of 2 to cover even positions only
+        for (int i = 2; i < arr.length; i += 2) {
+            int key = arr[i];
+            int j = i - 2;
+
+            // Shift elements at even indices greater than 'key' one step right
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 2] = arr[j];
+                j -= 2;
+            }
+
+            // Place 'key' at correct sorted position among even indices
+            arr[j + 2] = key;
+        }
+
+        // Reverse elements at odd indices in-place
+        // Initialize left pointer to first odd index (1)
+        int left = 1;
+
+        // Initialize right pointer to last odd index:
+        // If length is even, last odd index = length-1
+        // If odd, last odd index = length-2
+        int right = (arr.length % 2 == 0) ? arr.length - 1 : arr.length - 2;
+
+        // Swap odd index elements moving inward
+        while (left < right) {
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+
+            left += 2;  // move left pointer to next odd index
+            right -= 2; // move right pointer to previous odd index
+        }
+    }
+}
+
+
+
+////or/////// but uses list try to do 1st approach
+import java.util.*;
+
+public class RearrangeArray {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input array size and elements
+        System.out.print("Enter size of array: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+        System.out.println("Enter elements:");
+        for(int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        // Process the array in-place
+        rearrangeArray(arr);
+
+        // Print the result
+        System.out.println(Arrays.toString(arr));
+        sc.close();
+    }
+
+    static void rearrangeArray(int[] arr) {
+        List<Integer> oddIndicesValues = new ArrayList<>();
+        List<Integer> evenIndicesValues = new ArrayList<>();
+
+        // Collect values at odd and even indices
+        for (int i = 0; i < arr.length; i++) {
+            if (i % 2 == 0) {
+                evenIndicesValues.add(arr[i]);
+            } else {
+                oddIndicesValues.add(arr[i]);
+            }
+        }
+
+        // Sort even indices ascending
+        Collections.sort(evenIndicesValues);
+
+        // Reverse odd indices values
+        Collections.reverse(oddIndicesValues);
+
+        // Put sorted even and reversed odd values back in the original array
+        int evenIdx = 0, oddIdx = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (i % 2 == 0) {
+                arr[i] = evenIndicesValues.get(evenIdx++);
+            } else {
+                arr[i] = oddIndicesValues.get(oddIdx++);
+            }
+        }
+    }
+}
