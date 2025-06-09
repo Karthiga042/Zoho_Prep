@@ -1,0 +1,36 @@
+//gfg
+//Move All Zeroes to End
+class Solution {
+    void pushZerosToEnd(int[] arr) {
+        // code here
+        int index=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            //to process only non zero 
+            if(arr[i]!=0)
+            {
+                //if the element to swap already at correct position no need to swap
+                if(i!=index)
+                {
+                    int temp=arr[i];
+                    arr[i]=arr[index];
+                    arr[index]=temp;
+                }
+                index++;
+            }
+        }
+        
+        // int index=0;
+        // for(int i=0;i<arr.length;i++)
+        // {
+        //     if(arr[i]!=0)
+        //     {
+        //         arr[index++]=arr[i];
+        //     }
+        // }
+        // while(index<arr.length)
+        // {
+        //     arr[index++]=0;
+        // }
+    }
+}
