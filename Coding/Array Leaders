@@ -1,0 +1,42 @@
+//gfg
+//Array Leaders
+class Solution {
+    static ArrayList<Integer> leaders(int arr[]) {
+        // code here
+        ArrayList<Integer> list=new ArrayList<>();
+        //inititally set last element as max
+        int max=arr[arr.length-1];
+        list.add(max);
+        //traverse from right
+        for(int i=arr.length-2;i>=0;i--)
+        {
+            if(arr[i]>=max)
+            {
+                max=arr[i];
+                list.add(max);
+            }
+        }
+        // to keep the original order
+        Collections.reverse(list);
+        return list;
+        
+        // ArrayList<Integer> list=new ArrayList<>();
+        // for(int i=0;i<arr.length;i++)
+        // {
+        //     boolean flag=true;
+        //     for(int j=i+1;j<arr.length;j++)
+        //     {
+        //         if(arr[i]<arr[j])
+        //         {
+        //             flag=false;
+        //             break;
+        //         }
+        //     }
+        //     if(flag)
+        //     {
+        //         list.add(arr[i]);
+        //     }
+        // }
+        // return list;
+    }
+}
